@@ -1,0 +1,202 @@
+[
+{
+  "model": "api.category",
+  "pk": 1,
+  "fields": {
+    "name": "Groceries",
+    "slug": "groceries",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.271Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 2,
+  "fields": {
+    "name": "Gas",
+    "slug": "gas",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.273Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 3,
+  "fields": {
+    "name": "Shopping",
+    "slug": "shopping",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.274Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 4,
+  "fields": {
+    "name": "Restaurants",
+    "slug": "restaurants",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.276Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 5,
+  "fields": {
+    "name": "Interest Income",
+    "slug": "interest-income",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.277Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 6,
+  "fields": {
+    "name": "Entertainment",
+    "slug": "entertainment",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.279Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 7,
+  "fields": {
+    "name": "Electronics & Software",
+    "slug": "electronics-software",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.279Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 8,
+  "fields": {
+    "name": "Transfer",
+    "slug": "transfer",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.282Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 9,
+  "fields": {
+    "name": "Service & Parts",
+    "slug": "service-parts",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.283Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 10,
+  "fields": {
+    "name": "Utilities",
+    "slug": "utilities",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.284Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 11,
+  "fields": {
+    "name": "Clothing",
+    "slug": "clothing",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.285Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 12,
+  "fields": {
+    "name": "Fast Food",
+    "slug": "fast-food",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.289Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 13,
+  "fields": {
+    "name": "Hair",
+    "slug": "hair",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.292Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 14,
+  "fields": {
+    "name": "Credit Card Payment",
+    "slug": "credit-card-payment",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.294Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 15,
+  "fields": {
+    "name": "Bills & Utilities",
+    "slug": "bills-utilities",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.295Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 16,
+  "fields": {
+    "name": "Television",
+    "slug": "television",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.296Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 17,
+  "fields": {
+    "name": "Health & Fitness",
+    "slug": "health-fitness",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.296Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 18,
+  "fields": {
+    "name": "Pets",
+    "slug": "pets",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.298Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 19,
+  "fields": {
+    "name": "Movies & Dvds",
+    "slug": "movies-dvds",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.300Z"
+  }
+},
+{
+  "model": "api.category",
+  "pk": 20,
+  "fields": {
+    "name": "Home",
+    "slug": "home",
+    "parent": null,
+    "created_at": "2026-03-01T22:44:34.304Z"
+  }
+}
+]

@@ -1,0 +1,429 @@
+# ============================================================================
+# Financial Analysis API - .gitignore
+# Security & Governance: Protects sensitive financial data and credentials
+# Updated: March 2, 2026
+# ============================================================================
+
+# ============================================================================
+# SECURITY: NEVER COMMIT THESE FILES
+# ============================================================================
+
+# 🔐 Environment Files & Secrets
+# Contains database passwords, API keys, SECRET_KEY, etc.
+.env
+.env.local
+.env.*.local
+.env.production
+.env.staging
+.env.test
+*.env.local
+app/backend/.env
+app/backend/.env.local
+
+# 🔐 Credentials & Secrets
+secrets.yaml
+secrets.yml
+.credentials
+.aws/credentials
+.aws/config
+*.pem
+*.key
+*.p8
+*.p12
+*.pfx
+*.jks
+
+# 🔐 Database Files with Data
+# Never commit databases with real data
+*.sqlite
+*.sqlite3
+*.db
+app/backend/db.sqlite3
+app/backend/db.sqlite3-journal
+*.db-journal
+app/backend/*.db
+
+# ============================================================================
+# FINANCIAL SECURITY: NEVER COMMIT FINANCIAL DOCUMENTS
+# ============================================================================
+
+# 📄 Bank Statements & Financial Documents
+# These contain personal financial information and must NEVER be committed
+finances/
+# Exception: Allow test data and documentation (fabricated, safe data)
+!finances/README.md
+!finances/**/test-transactions-demo.csv
+
+*.pdf
+*.PDF
+*bank*.pdf
+*statement*.pdf
+*account*.pdf
+*transaction*.csv
+*transactions*.csv
+*export*.csv
+# Exception: Allow test data CSVs (fabricated data)
+!*test-transactions-demo.csv
+*download*.csv
+*.ofx
+*.qbo
+*.iif
+
+# 🏦 Specific Financial Document Patterns
+bank-5/
+bank-1/
+bank-2/
+bank-4/
+bank-3/
+citibank/
+*statement*
+*reconciliation*
+*bank-rec*
+*account-statement*
+
+# 📊 Data Exports & Backups
+# Any exported or backed up financial data
+*.xlsx
+*.xls
+*.xlsm
+/exports/
+/backups/
+*.backup
+*.bak
+/data/imports/
+/data/exports/
+
+# ============================================================================
+# LOGS & SENSITIVE RUNTIME DATA
+# ============================================================================
+
+# 📝 Logs
+*.log
+*.log.*
+logs/
+/logs/
+django.log
+app.log
+error.log
+debug.log
+*.out
+
+# 🔍 Sentry/Error Tracking
+.sentry
+
+# 📊 Metrics & Monitoring
+/metrics/
+prometheus/
+grafana/
+
+# ============================================================================
+# PERSONAL & USER DATA
+# ============================================================================
+
+# 👤 User Data Files
+/user_data/
+/uploads/
+/tmp/
+/temp/
+*.dat
+*.data
+
+# 📎 User-Generated Files (if any upload feature)
+/uploads/
+/media/files/
+/media/documents/
+
+# ============================================================================
+# PYTHON
+# ============================================================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ============================================================================
+# VIRTUAL ENVIRONMENTS
+# ============================================================================
+
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+.python-version
+
+# ============================================================================
+# DJANGO & WEB FRAMEWORK
+# ============================================================================
+
+# Django files (beyond logs and databases already covered)
+local_settings.py
+/static/
+/staticfiles/
+/media/
+/collected_static/
+instance/
+.webassets-cache
+
+# Django migrations (development only - typically staged separately)
+# Uncomment if not tracking migrations
+# */migrations/*.py
+# !*/migrations/__init__.py
+
+# ============================================================================
+# IDE & EDITOR
+# ============================================================================
+
+.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+.idea_modules/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+.vim/
+
+# ============================================================================
+# OPERATING SYSTEM
+# ============================================================================
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.Zone.Identifier
+.zone~
+
+# Windows
+Thumbs.db
+*.lnk
+$RECYCLE.BIN/
+
+# macOS
+.AppleDouble
+.LSOverride
+
+# Linux
+.directory
+
+# ============================================================================
+# TESTING & COVERAGE
+# ============================================================================
+
+.pytest_cache/
+.pytest_cache
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+coverage.xml
+*.cover
+
+# ============================================================================
+# BUILD & DISTRIBUTION
+# ============================================================================
+
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ============================================================================
+# PACKAGE MANAGERS
+# ============================================================================
+
+# uv
+.uv/
+uv.lock
+poetry.lock
+Pipfile.lock
+
+# pip
+pip-log.txt
+pip-delete-this-directory.txt
+requirements.txt.bak
+
+# ============================================================================
+# NODE/FRONTEND (if applicable)
+# ============================================================================
+
+node_modules/
+npm-debug.log
+yarn-error.log
+.npm
+.eslintcache
+.node_repl_history
+*.tsbuildinfo
+dist/
+out/
+
+# ============================================================================
+# CERTIFICATES & SSL
+# ============================================================================
+
+*.crt
+*.cer
+*.cert
+*.p7b
+*.pfx
+*.p12
+*.jks
+ssl/
+certs/
+
+# ============================================================================
+# CACHE FILES
+# ============================================================================
+
+*.cache
+.cache/
+.pylint.d/
+*.tmp
+.tmp/
+
+# ============================================================================
+# COMPILED FILES
+# ============================================================================
+
+*.o
+*.a
+*.so
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.dylib
+*.dll
+*.exe
+
+# ============================================================================
+# CONTAINERIZATION (if using Docker)
+# ============================================================================
+
+.dockerignore
+docker-compose.override.yml
+.docker/
+
+# ============================================================================
+# CI/CD (if using GitHub Actions, GitLab CI, etc.)
+# ============================================================================
+
+.github/workflows/secrets.yml
+.gitlab-ci.backup
+.circleci/config.backup
+
+# ============================================================================
+# INFRASTRUCTURE & CONFIGURATION
+# ============================================================================
+
+terraform.tfstate*
+terraform.tfvars
+*.tfvars
+.terraform/
+ansible/inventory/hosts.local
+ansible/group_vars/all/vault.yml
+
+# ============================================================================
+# LOCAL DEVELOPMENT
+# ============================================================================
+
+.env.development.local
+.env.test.local
+.env.production.local
+debug.log
+.vscode/launch.json
+
+# ============================================================================
+# MISCELLANEOUS
+# ============================================================================
+
+*.swp
+*.swo
+*~
+.#*
+\#*\#
+.\#*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+*~
+
+# OS-specific
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# macOS
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+.lnk
+$RECYCLE.BIN/
+
+# Linux
+.directory
