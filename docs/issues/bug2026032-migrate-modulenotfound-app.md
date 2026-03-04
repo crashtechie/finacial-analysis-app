@@ -98,8 +98,8 @@ Running migrations:
 ## Next Steps
 
 ### Verification
-- [ ] Verify that other Django management commands work correctly with the fix (e.g., `runserver`, `shell`, `createsuperuser`).
-- [ ] Test import paths from other entry points (e.g., `wsgi.py`, test runners) to ensure consistency.
+- [x] Verify that other Django management commands work correctly with the fix (e.g., `runserver`, `shell`, `createsuperuser`).
+- [x] Test import paths from other entry points (e.g., `wsgi.py`, test runners) to ensure consistency.
 
 ### Documentation Updates
 - [x] Update CHANGELOG with fix details and version bump to 0.1.1
@@ -107,9 +107,9 @@ Running migrations:
 - [x] Add troubleshooting section to TROUBLESHOOTING guide
 
 ### Release
-- [ ] Merge `bug/migrate-modulenotfound-app` branch to main.
-- [ ] Tag release as `v0.1.1`.
-- [ ] Update version in `pyproject.toml` to `0.1.1`.
+- [x] Merge `bug/migrate-modulenotfound-app` branch to main.
+- [x] Tag release as `v0.1.1`.
+- [x] Update version in `pyproject.toml` to `0.1.1`.
 
 ## Related Changes
 - **Fixed**: [app/backend/manage.py](app/backend/manage.py)

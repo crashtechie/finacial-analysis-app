@@ -1,10 +1,11 @@
-# Financial Analysis Django REST API
+# Financial Analysis Application
 
-A Django REST API application for analyzing financial data from CSV and PDF documents, featuring spending trends, category breakdowns, and merchant patterns.
+A full-stack application for analyzing financial data from CSV files, featuring a React frontend and Django REST API backend with spending trends, category breakdowns, and merchant patterns.
 
 ## Features
 
-- **Multi-format Import**: Import financial data from CSV files (PDF support in Phase 2)
+- **React Frontend**: Modern, responsive web interface for managing financial data
+- **Multi-format Import**: Import financial data from CSV files (PDF support planned)
 - **Multi-institution Support**: Extensible importer system for different banks
 - **Transaction Management**: Store and manage transactions with automatic duplicate detection
 - **Category Analysis**: Hierarchical categories with breakdown and comparison
@@ -14,6 +15,15 @@ A Django REST API application for analyzing financial data from CSV and PDF docu
 
 ## Tech Stack
 
+### Frontend
+- **React 18.2** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Fast build tool
+- **Zustand** - State management
+- **Tailwind CSS** - Styling
+- **React Router** - Client-side routing
+
+### Backend
 - **Python 3.12+**
 - **Django 5.x** - Web framework
 - **Django REST Framework** - API framework
@@ -38,8 +48,11 @@ A Django REST API application for analyzing financial data from CSV and PDF docu
 
 ### Setup Locally
 
+#### Backend Setup
+
 1. **Install dependencies**:
    ```bash
+   cd app/backend
    uv sync
    ```
 
@@ -60,7 +73,7 @@ A Django REST API application for analyzing financial data from CSV and PDF docu
 
 5. **Import sample data** (optional):
    ```bash
-   uv run python manage.py import_transactions finances/bank-1/bank-1-transactions-6057-202602.csv --format bank-1
+   uv run python manage.py import_transactions ../../finances/bank-1/bank-1-transactions-6057-202602.csv --format bank-1
    ```
 
 6. **Start the development server**:
@@ -71,6 +84,33 @@ A Django REST API application for analyzing financial data from CSV and PDF docu
 **Note:** With `uv`, you don't need to manually activate virtual environments. Simply use `uv run` before Python commands.
 
 The API will be available at `http://localhost:8000/api/`
+
+#### Frontend Setup
+
+1. **Install dependencies**:
+   ```bash
+   cd app/frontend
+   npm install
+   ```
+
+2. **Configure environment** (optional):
+   ```bash
+   # Create .env.local file (default uses /api proxy)
+   echo "VITE_API_URL=/api" > .env.local
+   ```
+
+3. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+
+The frontend will be available at `http://localhost:5173/`
+
+**Additional Frontend Commands**:
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run test` - Run tests
+- `npm run type-check` - TypeScript type checking
 
 ## API Endpoints
 
@@ -161,40 +201,63 @@ Visit `http://localhost:8000/admin/` (after creating superuser)
 ## Project Structure
 
 ```
-financial-analysis-app/
+finacial-analysis-app/
 ├── .devcontainer/          # Dev container configuration
-├── financial_analysis/     # Django project settings
-├── api/                    # Main Django app
-│   ├── models.py          # Data models
-│   ├── serializers.py     # DRF serializers
-│   ├── views.py           # API viewsets
-│   ├── importers/         # CSV/PDF import logic
-│   ├── analytics/         # Analytics endpoints
-│   └── management/        # Django commands
+├── app/
+│   ├── backend/           # Django REST API
+│   │   ├── financial_analysis/  # Django project settings
+│   │   ├── api/              # Main Django app
+│   │   │   ├── models.py     # Data models
+│   │   │   ├── serializers.py # DRF serializers
+│   │   │   ├── views.py      # API viewsets
+│   │   │   ├── importers/    # CSV import logic
+│   │   │   ├── analytics/    # Analytics endpoints
+│   │   │   └── management/   # Django commands
+│   │   └── manage.py         # Django management script
+│   └── frontend/          # React application
+│       ├── src/
+│       │   ├── api/          # API client layer
+│       │   ├── components/   # Reusable components
+│       │   ├── pages/        # Page components
+│       │   ├── store/        # Zustand stores
+│       │   ├── types/        # TypeScript types
+│       │   └── utils/        # Utility functions
+│       ├── index.html
+│       └── vite.config.ts
+├── docs/                  # Documentation
+│   ├── guides/           # User guides
+│   │   └── FRONTEND_TESTING.md  # Manual testing guide
+│   ├── architecture/     # Architecture docs
+│   └── reference/        # API reference
 ├── finances/              # Sample data
-├── scripts/               # Utility scripts
-└── manage.py             # Django management script
+└── scripts/               # Utility scripts
 ```
 
 ## Roadmap
 
-### Phase 1 (Current)
+### Phase 1 (Completed - v0.3.0)
 - ✅ Dev container setup
 - ✅ Django project structure
 - ✅ Data models
-- ✅ CSV import (Bank-1 format)
+- ✅ CSV import (Bank-1 and Bank-5 formats)
 - ✅ REST API endpoints
 - ✅ Analytics/reporting
 - ✅ Documentation
+- ✅ React frontend with TypeScript
+- ✅ Complete CRUD operations UI
+- ✅ Transaction filtering and search
+- ✅ Responsive design
 
-### Phase 2 (Future)
+### Phase 2 (Planned)
 - [ ] PDF parsing support
 - [ ] Additional bank formats
 - [ ] Budget tracking
 - [ ] Recurring transaction detection
-- [ ] Export functionality
-- [ ] Advanced analytics (anomaly detection)
-- [ ] Web frontend
+- [ ] Export functionality (CSV/Excel)
+- [ ] Advanced analytics (anomaly detection, predictions)
+- [ ] User authentication and multi-user support
+- [ ] API rate limiting
+- [ ] Charts and data visualizations
 
 ## License
 
