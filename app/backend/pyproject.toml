@@ -5,11 +5,11 @@ description = "Django REST API for analyzing financial data from CSV and PDF doc
 readme = "README.md"
 requires-python = ">=3.14,<4.0"
 dependencies = [
-    "django>=5.0,<6.0",
+    "django>=5.0,<7.0",
     "djangorestframework>=3.14.0,<4.0",
     "django-cors-headers>=4.3.1,<5.0",
-    "django-filter>=24.0,<25.0",
-    "pandas>=2.2.0,<3.0",
+    "django-filter>=24.0,<26.0",
+    "pandas>=2.2.0,<4.0",
     "python-dateutil>=2.8.2,<3.0",
     "python-dotenv>=1.0.0,<2.0",
     "bandit>=1.9.4",
@@ -17,13 +17,13 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "black>=25.0.0,<26.0",
+    "black>=25.0.0,<27.0",
     "flake8>=7.0.0,<8.0",
-    "isort>=5.13.0,<6.0",
-    "ipython>=8.20.0,<9.0",
-    "pytest>=7.0.0,<8.0",
+    "isort>=5.13.0,<9.0",
+    "ipython>=8.20.0,<10.0",
+    "pytest>=7.0.0,<10.0",
     "pytest-django>=4.7.0,<5.0",
-    "pytest-cov>=4.0.0,<5.0",
+    "pytest-cov>=4.0.0,<8.0",
     "factory-boy>=3.3.0,<4.0",
 ]
 
