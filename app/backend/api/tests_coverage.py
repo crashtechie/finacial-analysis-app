@@ -67,9 +67,7 @@ class DateHelperTests(TestCase):
         """Test getting custom date range"""
         custom_start = date(2026, 2, 1)
         custom_end = date(2026, 2, 28)
-        start, end = get_date_range(
-            period="custom", start_date=custom_start, end_date=custom_end
-        )
+        start, end = get_date_range(period="custom", start_date=custom_start, end_date=custom_end)
         self.assertEqual(start, custom_start)
         self.assertEqual(end, custom_end)
 
@@ -130,9 +128,7 @@ class Bank1ImporterTests(TestCase):
     """Tests for Bank-1 importer"""
 
     def setUp(self):
-        self.institution = Institution.objects.create(
-            name="Bank-1", identifier="bank-1"
-        )
+        self.institution = Institution.objects.create(name="Bank-1", identifier="bank-1")
         self.account = Account.objects.create(
             institution=self.institution,
             name="Checking",
@@ -192,9 +188,7 @@ class Bank1ImporterTests(TestCase):
 2026-02-15,Whole Foods,WF MKT #1234,Groceries,-50.25,Posted
 2026-02-14,Chipotle,CHIPOTLE #5678,Restaurants,-12.50,Posted"""
 
-        with tempfile.NamedTemporaryFile(
-            mode="w", suffix=".csv", delete=False
-        ) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as f:
             f.write(csv_data)
             f.flush()
 
@@ -204,9 +198,7 @@ class Bank1ImporterTests(TestCase):
             self.assertIsNotNone(log)
             self.assertEqual(log.records_processed, 2)
             self.assertEqual(log.records_imported, 2)
-            self.assertEqual(
-                Transaction.objects.filter(account=self.account).count(), 2
-            )
+            self.assertEqual(Transaction.objects.filter(account=self.account).count(), 2)
 
             Path(f.name).unlink()
 
@@ -215,9 +207,7 @@ class Bank5ImporterTests(TestCase):
     """Tests for Bank-5 importer"""
 
     def setUp(self):
-        self.institution = Institution.objects.create(
-            name="Bank-5", identifier="bank-5"
-        )
+        self.institution = Institution.objects.create(name="Bank-5", identifier="bank-5")
         self.account = Account.objects.create(
             institution=self.institution,
             name="Savings",
@@ -238,9 +228,7 @@ class Bank5ImporterTests(TestCase):
 2026-02-18,Power Company,POWER BILL,Utilities,-145.67,Posted
 2026-02-17,Interest Income,INTEREST,Income,5.25,Posted"""
 
-        with tempfile.NamedTemporaryFile(
-            mode="w", suffix=".csv", delete=False
-        ) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as f:
             f.write(csv_data)
             f.flush()
 
@@ -282,9 +270,7 @@ class ManagementCommandTests(TestCase):
     """Tests for management commands"""
 
     def setUp(self):
-        self.institution = Institution.objects.create(
-            name="Bank-1", identifier="bank-1"
-        )
+        self.institution = Institution.objects.create(name="Bank-1", identifier="bank-1")
         self.account = Account.objects.create(
             institution=self.institution,
             name="Checking",
@@ -298,9 +284,7 @@ class ManagementCommandTests(TestCase):
         csv_data = """Date,Description,Original Description,Category,Amount,Status
 2026-02-15,Store,STORE #1234,Groceries,-50.00,Posted"""
 
-        with tempfile.NamedTemporaryFile(
-            mode="w", suffix=".csv", delete=False
-        ) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as f:
             f.write(csv_data)
             f.flush()
 
@@ -325,9 +309,7 @@ class ManagementCommandTests(TestCase):
         csv_data = """Date,Description,Original Description,Category,Amount,Status
 2026-02-15,Store,STORE,Groceries,-50.00,Posted"""
 
-        with tempfile.NamedTemporaryFile(
-            mode="w", suffix=".csv", delete=False
-        ) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as f:
             f.write(csv_data)
             f.flush()
 
@@ -382,9 +364,7 @@ class AdditionalViewTests(TestCase):
     """Additional tests for API views"""
 
     def setUp(self):
-        self.institution = Institution.objects.create(
-            name="Bank-1", identifier="bank-1"
-        )
+        self.institution = Institution.objects.create(name="Bank-1", identifier="bank-1")
         self.account = Account.objects.create(
             institution=self.institution,
             name="Checking",
@@ -395,9 +375,7 @@ class AdditionalViewTests(TestCase):
     def test_update_transaction_category(self):
         """Test updating transaction category"""
         category1 = Category.objects.create(name="Groceries", slug="groceries")
-        category2 = Category.objects.create(
-            name="Restaurants", slug="restaurants"
-        )
+        category2 = Category.objects.create(name="Restaurants", slug="restaurants")
 
         transaction = Transaction.objects.create(
             account=self.account,
@@ -423,18 +401,14 @@ class AdditionalAnalyticsTests(TestCase):
     """Additional tests for analytics endpoints"""
 
     def setUp(self):
-        self.institution = Institution.objects.create(
-            name="Bank-1", identifier="bank-1"
-        )
+        self.institution = Institution.objects.create(name="Bank-1", identifier="bank-1")
         self.account = Account.objects.create(
             institution=self.institution,
             name="Checking",
             account_number="1001",
             account_type="checking",
         )
-        self.category = Category.objects.create(
-            name="Groceries", slug="groceries"
-        )
+        self.category = Category.objects.create(name="Groceries", slug="groceries")
 
         # Create test transactions
         for i in range(10):

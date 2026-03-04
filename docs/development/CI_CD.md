@@ -223,7 +223,7 @@ Updates action versions in workflow files to latest releases.
    ```bash
    # Backend
    cd app/backend
-   uv sync
+   uv sync --extra dev
    uv run pytest
 
    # Frontend

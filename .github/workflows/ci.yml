@@ -40,7 +40,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: app/backend
-        run: uv sync
+        run: uv sync --extra dev
 
       - name: Run database migrations
         working-directory: app/backend
@@ -96,7 +96,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: app/backend
-        run: uv sync
+        run: uv sync --extra dev
 
       - name: Check code formatting with Black
         working-directory: app/backend
