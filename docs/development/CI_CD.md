@@ -40,7 +40,7 @@ The CI pipeline runs automatically on:
 
 ```bash
 cd app/backend
-uv run pytest --cov=api --cov-report=term --cov-fail-under=80 api/tests.py
+uv run pytest --cov=api --cov-report=term --cov-fail-under=80 api/tests.py api/tests_coverage.py api/tests_edge_cases.py
 ```
 
 #### 2. Backend Code Quality
@@ -247,7 +247,7 @@ cd app/backend
 uv run black api/                                    # Format code
 uv run isort api/                                    # Sort imports
 uv run flake8 api/                                   # Lint code
-uv run pytest --cov=api --cov-fail-under=80         # Run tests with coverage
+uv run pytest --cov=api --cov-fail-under=80 api/tests.py api/tests_coverage.py api/tests_edge_cases.py  # Run tests with coverage
 
 # Frontend - Full validation
 cd app/frontend

@@ -2,17 +2,14 @@
 Edge case and error handling tests for comprehensive coverage.
 """
 
-import csv
 import tempfile
 from datetime import date, timedelta
 from decimal import Decimal
 from pathlib import Path
 
 from django.test import TestCase
-from io import StringIO
 
-from api.importers.base import BaseImporter
-from api.models import Account, Category, ImportLog, Institution, Transaction
+from api.models import Account, Category, Institution, Transaction
 
 
 class EdgeCaseImporterTests(TestCase):
@@ -103,7 +100,7 @@ class EdgeCaseImporterTests(TestCase):
             from api.importers.bank_1 import Bank1Importer
 
             importer = Bank1Importer(file_path=f.name, account=account)
-            log = importer.import_file()
+            importer.import_file()
 
             # Category should be created if not exists
             self.assertTrue(
@@ -177,14 +174,14 @@ class TransactionFilteringTests(TestCase):
 
     def test_filter_by_status(self):
         """Test filtering transactions by status"""
-        t1 = Transaction.objects.create(
+        Transaction.objects.create(
             account=self.account,
             date=date.today(),
             description="Transaction 1",
             amount=Decimal("-50.00"),
             status="posted",
         )
-        t2 = Transaction.objects.create(
+        Transaction.objects.create(
             account=self.account,
             date=date.today(),
             description="Transaction 2",

@@ -2,20 +2,19 @@
 Additional comprehensive tests for importers, date helpers, and command line utilities.
 """
 
-import csv
 import tempfile
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 from decimal import Decimal
 from pathlib import Path
 
 from django.core.management import call_command
-from django.test import TestCase, override_settings
+from django.test import TestCase
 from io import StringIO
 
 from api.importers import get_importer, list_importers
 from api.importers.bank_1 import Bank1Importer
 from api.importers.bank_5 import Bank5Importer
-from api.models import Account, Category, ImportLog, Institution, Transaction
+from api.models import Account, Category, Institution, Transaction
 from api.utils.date_helpers import (
     format_period_label,
     get_date_range,
