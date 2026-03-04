@@ -2,29 +2,22 @@
 Edge case and error handling tests for comprehensive coverage.
 """
 
-import csv
 import tempfile
 from datetime import date, timedelta
 from decimal import Decimal
 from pathlib import Path
 
 from django.test import TestCase
-from io import StringIO
 
-from api.importers.base import BaseImporter
-from api.models import Account, Category, ImportLog, Institution, Transaction
+from api.models import Account, Category, Institution, Transaction
 
 
 class EdgeCaseImporterTests(TestCase):
     """Tests for importer edge cases and error handling"""
 
     def setUp(self):
-        self.institution = Institution.objects.create(
-            name="Bank-1", identifier="bank-1"
-        )
-        self.category = Category.objects.create(
-            name="Test", slug="test"
-        )
+        self.institution = Institution.objects.create(name="Bank-1", identifier="bank-1")
+        self.category = Category.objects.create(name="Test", slug="test")
 
     def test_parse_amount_with_spaces(self):
         """Test parsing amount with spaces"""
@@ -74,9 +67,7 @@ class EdgeCaseImporterTests(TestCase):
         from api.importers.bank_1 import Bank1Importer
 
         with tempfile.NamedTemporaryFile(mode="w", suffix=".csv") as f:
-            importer = Bank1Importer(
-                file_path=f.name, account=account
-            )
+            importer = Bank1Importer(file_path=f.name, account=account)
             result = importer.get_or_create_account()
             self.assertEqual(result, account)
 
@@ -95,9 +86,7 @@ class EdgeCaseImporterTests(TestCase):
         csv_data = """Date,Description,Original Description,Category,Amount,Status
 2026-02-15,Store,STORE,NewCategory,-50.00,Posted"""
 
-        with tempfile.NamedTemporaryFile(
-            mode="w", suffix=".csv", delete=False
-        ) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as f:
             f.write(csv_data)
             f.flush()
 
@@ -110,17 +99,13 @@ class EdgeCaseImporterTests(TestCase):
 
             from api.importers.bank_1 import Bank1Importer
 
-            importer = Bank1Importer(
-                file_path=f.name, account=account
-            )
-            log = importer.import_file()
+            importer = Bank1Importer(file_path=f.name, account=account)
+            importer.import_file()
 
             # Category should be created if not exists
             self.assertTrue(
                 Category.objects.filter(slug="newcategory").exists()
-                or Category.objects.filter(
-                    slug="new-category"
-                ).exists()
+                or Category.objects.filter(slug="new-category").exists()
             )
 
             Path(f.name).unlink()
@@ -131,9 +116,7 @@ class EdgeCaseImporterTests(TestCase):
 2026-02-15,Store,STORE #1234,Test,-50.00,Posted
 2026-02-15,Store,STORE #1234,Test,-50.00,Posted"""
 
-        with tempfile.NamedTemporaryFile(
-            mode="w", suffix=".csv", delete=False
-        ) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as f:
             f.write(csv_data)
             f.flush()
 
@@ -146,9 +129,7 @@ class EdgeCaseImporterTests(TestCase):
 
             from api.importers.bank_1 import Bank1Importer
 
-            importer = Bank1Importer(
-                file_path=f.name, account=account
-            )
+            importer = Bank1Importer(file_path=f.name, account=account)
             log = importer.import_file()
 
             # Should skip duplicate
@@ -169,9 +150,7 @@ class EdgeCaseImporterTests(TestCase):
                 account_type="checking",
             )
 
-            importer = Bank1Importer(
-                file_path=f.name, account=account
-            )
+            importer = Bank1Importer(file_path=f.name, account=account)
             summary = importer.get_summary()
 
             self.assertIn("account", summary)
@@ -184,29 +163,25 @@ class TransactionFilteringTests(TestCase):
     """Tests for transaction filtering and search"""
 
     def setUp(self):
-        self.institution = Institution.objects.create(
-            name="Bank-1", identifier="bank-1"
-        )
+        self.institution = Institution.objects.create(name="Bank-1", identifier="bank-1")
         self.account = Account.objects.create(
             institution=self.institution,
             name="Checking",
             account_number="1001",
             account_type="checking",
         )
-        self.category = Category.objects.create(
-            name="Groceries", slug="groceries"
-        )
+        self.category = Category.objects.create(name="Groceries", slug="groceries")
 
     def test_filter_by_status(self):
         """Test filtering transactions by status"""
-        t1 = Transaction.objects.create(
+        Transaction.objects.create(
             account=self.account,
             date=date.today(),
             description="Transaction 1",
             amount=Decimal("-50.00"),
             status="posted",
         )
-        t2 = Transaction.objects.create(
+        Transaction.objects.create(
             account=self.account,
             date=date.today(),
             description="Transaction 2",
@@ -259,24 +234,18 @@ class CreateAndDeleteTests(TestCase):
 
     def test_delete_institution(self):
         """Test deleting institution"""
-        institution = Institution.objects.create(
-            name="Bank-2", identifier="bank-2"
-        )
+        institution = Institution.objects.create(name="Bank-2", identifier="bank-2")
 
         from rest_framework.test import APIClient
 
         client = APIClient()
         response = client.delete(f"/api/institutions/{institution.id}/")
         self.assertEqual(response.status_code, 204)
-        self.assertFalse(
-            Institution.objects.filter(id=institution.id).exists()
-        )
+        self.assertFalse(Institution.objects.filter(id=institution.id).exists())
 
     def test_delete_account(self):
         """Test deleting account"""
-        institution = Institution.objects.create(
-            name="Bank-1", identifier="bank-1"
-        )
+        institution = Institution.objects.create(name="Bank-1", identifier="bank-1")
         account = Account.objects.create(
             institution=institution,
             name="Test",
@@ -292,9 +261,7 @@ class CreateAndDeleteTests(TestCase):
 
     def test_create_category_with_parent(self):
         """Test creating category with parent"""
-        parent = Category.objects.create(
-            name="Expenses", slug="expenses"
-        )
+        parent = Category.objects.create(name="Expenses", slug="expenses")
 
         from rest_framework.test import APIClient
 
@@ -312,9 +279,7 @@ class SerializerValidationTests(TestCase):
     """Tests for serializer validation"""
 
     def setUp(self):
-        self.institution = Institution.objects.create(
-            name="Bank-1", identifier="bank-1"
-        )
+        self.institution = Institution.objects.create(name="Bank-1", identifier="bank-1")
 
     def test_create_invalid_institution(self):
         """Test creating institution with invalid data"""
@@ -341,9 +306,7 @@ class SerializerValidationTests(TestCase):
 
         client = APIClient()
         data = {"name": "Bank-1 Updated"}
-        response = client.patch(
-            f"/api/institutions/{self.institution.id}/", data
-        )
+        response = client.patch(f"/api/institutions/{self.institution.id}/", data)
         self.assertEqual(response.status_code, 200)
         self.institution.refresh_from_db()
         self.assertEqual(self.institution.name, "Bank-1 Updated")
@@ -353,9 +316,7 @@ class PagenationTests(TestCase):
     """Tests for pagination"""
 
     def setUp(self):
-        self.institution = Institution.objects.create(
-            name="Bank-1", identifier="bank-1"
-        )
+        self.institution = Institution.objects.create(name="Bank-1", identifier="bank-1")
         self.account = Account.objects.create(
             institution=self.institution,
             name="Checking",
