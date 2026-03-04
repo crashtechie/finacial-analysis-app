@@ -13,9 +13,75 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Recurring transaction detection
 - Transaction export (CSV/Excel)
 - Advanced analytics (anomaly detection, spending predictions)
-- Web frontend (React/Vue)
 - User authentication and multi-user support
 - API rate limiting
+
+---
+
+## [0.3.0] - 2026-03-04
+
+### Added - Frontend Application
+- **React Frontend (v0.2.0)**: Complete frontend implementation with modern React stack
+  - React 18.2 with TypeScript for type safety
+  - React Router 6 for client-side routing
+  - Zustand for state management
+  - Tailwind CSS for styling with custom design system
+  - Vite for fast development and optimized production builds
+  
+- **Frontend Pages & Features**:
+  - Home page with navigation dashboard and feature cards
+  - Institutions page: Complete CRUD operations with modal forms
+  - Accounts page: Account management with balance display and type selection
+  - Categories page: Hierarchical category management with parent-child relationships
+  - Transactions page: Full transaction management with filtering, pagination, and search
+  
+- **UI Components**:
+  - Reusable Modal component for forms
+  - DeleteConfirmation dialog for safe deletions
+  - LoadingSpinner for async operations
+  - ErrorMessage component with retry capability
+  - Responsive Layout with navigation bar
+  
+- **API Integration**:
+  - Complete API client with fetch wrapper
+  - Request timeout handling (15 seconds)
+  - AbortController for cancellable requests
+  - Centralized error handling
+  - Automatic API proxy configuration for development
+  
+- **Developer Features**:
+  - TypeScript strict mode with path aliases (@/ for src/)
+  - ESLint configuration for code quality
+  - Vitest setup for unit testing
+  - Development server with hot module replacement
+  - Production build optimization
+
+### Added - Backend Enhancements
+- **Category Serializer Auto-slug Generation**: Category `slug` field now auto-generates from `name` using Django's `slugify()` function
+  - Slug field is now optional in API requests
+  - Automatically created/updated on category creation and updates
+  - Eliminates frontend requirement to manually generate slugs
+
+### Fixed
+- **Date Formatting**: Fixed invalid `Intl.DateFormat` API call to use correct `Intl.DateTimeFormat` in frontend utilities
+- **TypeScript Warnings**: Removed unused `get` parameter from Zustand store callbacks in accountStore, categoryStore, and institutionStore
+- **API Configuration**: Changed default `VITE_API_URL` to use `/api` proxy path instead of absolute host URL to prevent CORS issues in containerized dev environments
+
+### Documentation
+- **Frontend Manual Testing Guide**: Comprehensive testing guide at `docs/guides/FRONTEND_TESTING.md`
+  - Step-by-step test procedures for all pages and features
+  - CRUD operation testing for institutions, accounts, categories, and transactions
+  - Error handling and edge case testing
+  - Navigation, filtering, and pagination testing
+  - Performance and UI/UX testing checklists
+  - Common issues troubleshooting table
+  - Browser compatibility requirements
+  - Test data setup recommendations
+
+### Changed
+- **API Client BaseURL**: Frontend now forces `/api` base URL in development mode regardless of environment variable
+- **Request Timeout**: All API requests now have 15-second timeout with proper error messages
+- **Environment Configuration**: `.env.local` now uses `/api` for VITE_API_URL (Vite proxy) instead of `http://localhost:8000/api`
 
 ---
 

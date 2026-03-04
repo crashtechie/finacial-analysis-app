@@ -23,11 +23,26 @@ class CategorySerializer(serializers.ModelSerializer):
 
     parent_name = serializers.CharField(source="parent.name", read_only=True, allow_null=True)
     transaction_count = serializers.IntegerField(source="transactions.count", read_only=True)
+    slug = serializers.SlugField(required=False, allow_blank=True)
 
     class Meta:
         model = Category
         fields = ["id", "name", "slug", "parent", "parent_name", "transaction_count", "created_at"]
         read_only_fields = ["created_at"]
+
+    def create(self, validated_data):
+        """Auto-generate slug from name if not provided"""
+        if not validated_data.get('slug'):
+            from django.utils.text import slugify
+            validated_data['slug'] = slugify(validated_data['name'])
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        """Auto-generate slug from name if not provided"""
+        if not validated_data.get('slug'):
+            from django.utils.text import slugify
+            validated_data['slug'] = slugify(validated_data['name'])
+        return super().update(instance, validated_data)
 
 
 class AccountSerializer(serializers.ModelSerializer):
