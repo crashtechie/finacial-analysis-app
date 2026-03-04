@@ -18,6 +18,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.4.0] - 2026-03-04
+
+### Added - CI/CD & Security
+- **GitHub Actions CI Pipeline**:
+  - Added automated workflow at `.github/workflows/ci.yml`
+  - Runs on push/PR for `develop` and `main`
+  - Backend test execution with coverage reporting and enforced threshold (`--cov-fail-under=80`)
+  - Backend quality checks (`black --check`, `flake8`, `isort --check-only`)
+  - Frontend quality checks (`npm run type-check`, `npm run lint`, `npm run build`)
+
+- **Security Automation**:
+  - Added workflow at `.github/workflows/security.yml`
+  - CodeQL scanning for Python and JavaScript/TypeScript
+  - Bandit Python security scanning with SARIF upload
+  - npm dependency audit checks
+  - Pull request dependency review and weekly scheduled scans
+
+- **Dependabot Configuration**:
+  - Added `.github/dependabot.yml`
+  - Weekly dependency update PRs for Python, npm, and GitHub Actions
+  - Grouped updates by ecosystem/tooling categories
+  - Target branch set to `develop`
+
+- **Developer Documentation**:
+  - Added comprehensive CI/CD guide at `docs/development/CI_CD.md`
+  - Includes workflow behavior, local validation commands, and troubleshooting
+
+### Changed
+- **Project Versioning**:
+  - Backend project version bumped from `0.3.0` to `0.4.0`
+  - Frontend package version bumped from `0.2.0` to `0.2.1`
+
+- **Frontend Toolchain Security**:
+  - Updated vulnerable frontend tooling dependencies via npm audit remediation
+  - Improved API client typing and lint compliance in frontend codebase
+
+---
+
 ## [0.3.0] - 2026-03-04
 
 ### Added - Frontend Application

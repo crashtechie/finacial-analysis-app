@@ -12,6 +12,7 @@ Complete documentation for the Financial Analysis API project. Start here to fin
 ### For Developers
 - **[Developer Guide](development/DEVELOPER_GUIDE.md)** - How to extend the project
 - **[Testing Guide](development/TESTING.md)** - How to write and run tests
+- **[CI/CD Guide](development/CI_CD.md)** - CI workflows, security scanning, and local validation
 - **[System Design](architecture/SYSTEM_DESIGN.md)** - Architecture and design patterns
 - **[Database Schema](architecture/DATABASE_SCHEMA.md)** - Complete database reference
 
@@ -58,7 +59,8 @@ docs/
 │
 ├── development/                       # Developer documentation
 │   ├── DEVELOPER_GUIDE.md            # Extending the project
-│   └── TESTING.md                    # Testing guide
+│   ├── TESTING.md                    # Testing guide
+│   └── CI_CD.md                      # CI/CD and security automation guide
 │
 └── deployment/                        # Operations documentation
     └── DEPLOYMENT.md                 # Production deployment
@@ -78,6 +80,9 @@ docs/
 
 #### ...run the tests?
 → [Testing Guide - Running Tests](development/TESTING.md#running-tests)
+
+#### ...understand CI checks or fix pipeline failures?
+→ [CI/CD Guide](development/CI_CD.md)
 
 #### ...use the API?
 → [API Reference](reference/API_REFERENCE.md)
