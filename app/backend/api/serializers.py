@@ -32,16 +32,18 @@ class CategorySerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """Auto-generate slug from name if not provided"""
-        if not validated_data.get('slug'):
+        if not validated_data.get("slug"):
             from django.utils.text import slugify
-            validated_data['slug'] = slugify(validated_data['name'])
+
+            validated_data["slug"] = slugify(validated_data["name"])
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
         """Auto-generate slug from name if not provided"""
-        if not validated_data.get('slug'):
+        if not validated_data.get("slug"):
             from django.utils.text import slugify
-            validated_data['slug'] = slugify(validated_data['name'])
+
+            validated_data["slug"] = slugify(validated_data["name"])
         return super().update(instance, validated_data)
 
 

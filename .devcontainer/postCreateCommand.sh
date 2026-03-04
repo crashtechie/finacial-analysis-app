@@ -15,7 +15,7 @@ if [ ! -f "pyproject.toml" ]; then
 fi
 
 echo "📦 Installing Python dependencies with uv..."
-uv sync
+uv sync --extra dev
 
 # Check if virtual environment was created
 if [ ! -d ".venv" ]; then

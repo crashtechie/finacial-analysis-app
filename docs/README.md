@@ -16,6 +16,7 @@ A full-stack application for analyzing financial data from CSV files, featuring 
 ## Tech Stack
 
 ### Frontend
+
 - **React 18.2** - UI library
 - **TypeScript** - Type safety
 - **Vite** - Fast build tool
@@ -24,6 +25,7 @@ A full-stack application for analyzing financial data from CSV files, featuring 
 - **React Router** - Client-side routing
 
 ### Backend
+
 - **Python 3.12+**
 - **Django 5.x** - Web framework
 - **Django REST Framework** - API framework
@@ -51,27 +53,32 @@ A full-stack application for analyzing financial data from CSV files, featuring 
 #### Backend Setup
 
 1. **Install dependencies**:
+
    ```bash
    cd app/backend
-   uv sync
+   uv sync --extra dev
    ```
 
 2. **Copy environment file**:
+
    ```bash
    cp .env.example .env
    ```
 
 3. **Run migrations**:
+
    ```bash
    uv run python manage.py migrate
    ```
 
 4. **Load initial categories**:
+
    ```bash
    uv run python manage.py loaddata categories
    ```
 
 5. **Import sample data** (optional):
+
    ```bash
    uv run python manage.py import_transactions ../../finances/bank-1/bank-1-transactions-6057-202602.csv --format bank-1
    ```
@@ -88,12 +95,14 @@ The API will be available at `http://localhost:8000/api/`
 #### Frontend Setup
 
 1. **Install dependencies**:
+
    ```bash
    cd app/frontend
    npm install
    ```
 
 2. **Configure environment** (optional):
+
    ```bash
    # Create .env.local file (default uses /api proxy)
    echo "VITE_API_URL=/api" > .env.local
@@ -107,6 +116,7 @@ The API will be available at `http://localhost:8000/api/`
 The frontend will be available at `http://localhost:5173/`
 
 **Additional Frontend Commands**:
+
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run test` - Run tests
@@ -127,10 +137,8 @@ The frontend will be available at `http://localhost:5173/`
 
 - `GET /api/analytics/spending-trends/` - Time-series spending analysis
   - Query params: `period` (daily/weekly/monthly), `start_date`, `end_date`, `account`
-  
 - `GET /api/analytics/category-breakdown/` - Spending by category
   - Query params: `start_date`, `end_date`, `account`, `compare_period`
-  
 - `GET /api/analytics/merchants/` - Top merchants analysis
   - Query params: `start_date`, `end_date`, `account`, `limit`
 
@@ -146,6 +154,7 @@ The frontend will be available at `http://localhost:5173/`
 ### CSV Format
 
 Currently supports Bank-1 format with columns:
+
 - Date (YYYY-MM-DD)
 - Description
 - Original Description
@@ -161,13 +170,14 @@ Currently supports Bank-1 format with columns:
 4. Register in `api/importers/__init__.py`
 
 Example:
+
 ```python
 from .base import BaseImporter
 
 class Bank5Importer(BaseImporter):
     def get_format_name(self):
         return "bank-5"
-    
+
     def parse_row(self, row):
         # Parse row and return transaction dict
         pass
@@ -236,6 +246,7 @@ finacial-analysis-app/
 ## Roadmap
 
 ### Phase 1 (Completed - v0.3.0)
+
 - ✅ Dev container setup
 - ✅ Django project structure
 - ✅ Data models
@@ -249,6 +260,7 @@ finacial-analysis-app/
 - ✅ Responsive design
 
 ### Phase 2 (Planned)
+
 - [ ] PDF parsing support
 - [ ] Additional bank formats
 - [ ] Budget tracking

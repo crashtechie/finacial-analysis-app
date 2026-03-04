@@ -54,11 +54,14 @@ export class ApiClient {
     }
   }
 
-  async get<T>(endpoint: string, params?: Record<string, any>): Promise<T> {
+  async get<T>(
+    endpoint: string,
+    params?: Record<string, string | number | boolean | undefined> | object
+  ): Promise<T> {
     const queryString = params
       ? '?' +
         new URLSearchParams(
-          Object.entries(params)
+          Object.entries(params as Record<string, unknown>)
             .filter(([, value]) => value !== undefined && value !== null)
             .map(([key, value]) => [key, String(value)])
         ).toString()
@@ -69,21 +72,21 @@ export class ApiClient {
     });
   }
 
-  async post<T>(endpoint: string, data: any): Promise<T> {
+  async post<T>(endpoint: string, data: object): Promise<T> {
     return this.request<T>(endpoint, {
       method: 'POST',
       body: JSON.stringify(data),
     });
   }
 
-  async put<T>(endpoint: string, data: any): Promise<T> {
+  async put<T>(endpoint: string, data: object): Promise<T> {
     return this.request<T>(endpoint, {
       method: 'PUT',
       body: JSON.stringify(data),
     });
   }
 
-  async patch<T>(endpoint: string, data: any): Promise<T> {
+  async patch<T>(endpoint: string, data: object): Promise<T> {
     return this.request<T>(endpoint, {
       method: 'PATCH',
       body: JSON.stringify(data),
