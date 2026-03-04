@@ -5,11 +5,11 @@ Additional comprehensive tests for importers, date helpers, and command line uti
 import tempfile
 from datetime import date, timedelta
 from decimal import Decimal
+from io import StringIO
 from pathlib import Path
 
 from django.core.management import call_command
 from django.test import TestCase
-from io import StringIO
 
 from api.importers import get_importer, list_importers
 from api.importers.bank_1 import Bank1Importer
