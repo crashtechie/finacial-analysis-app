@@ -111,13 +111,13 @@ class BudgetCategory(models.Model):
 
 ```bash
 # Create migration file
-python manage.py makemigrations
+uv run python manage.py makemigrations
 
 # Apply to database
-python manage.py migrate
+uv run python manage.py migrate
 
 # Verify
-python manage.py showmigrations
+uv run python manage.py showmigrations
 ```
 
 ### Step 3: Register in Admin (if needed)
@@ -282,7 +282,7 @@ urlpatterns = router.urls
 
 ```bash
 # Start server
-python manage.py runserver
+uv run python manage.py runserver
 
 # In another terminal
 curl -X GET http://localhost:8000/api/budgets/
@@ -491,19 +491,19 @@ def test_api_create(self):
 
 ```bash
 # All tests
-python manage.py test api.tests
+uv run python manage.py test api.tests
 
 # Specific test class
-python manage.py test api.tests.InstitutionModelTests
+uv run python manage.py test api.tests.InstitutionModelTests
 
 # Specific test method
-python manage.py test api.tests.InstitutionModelTests.test_institution_creation
+uv run python manage.py test api.tests.InstitutionModelTests.test_institution_creation
 
 # With coverage
-pytest --cov=api --cov-report=html api/tests.py
+uv run pytest --cov=api --cov-report=html api/tests.py
 
 # Verbose output
-python manage.py test api.tests -v 2
+uv run python manage.py test api.tests -v 2
 ```
 
 ---
@@ -514,16 +514,16 @@ python manage.py test api.tests -v 2
 
 ```bash
 # Auto-format code
-black api/
+uv run black api/
 
 # Check import order
-isort api/
+uv run isort api/
 
 # Lint code
-flake8 api/
+uv run flake8 api/
 
 # All together
-black api/ && isort api/ && flake8 api/
+uv run black api/ ; uv run isort api/ ; uv run flake8 api/
 ```
 
 ### Pre-commit Checks
@@ -532,17 +532,17 @@ Before committing:
 
 ```bash
 # Format
-black api/
-isort api/
+uv run black api/
+uv run isort api/
 
 # Check for issues
-flake8 api/ --max-line-length=100
+uv run flake8 api/ --max-line-length=100
 
 # Run tests
-python manage.py test api.tests
+uv run python manage.py test api.tests
 
 # Check for migrations
-python manage.py makemigrations --check
+uv run python manage.py makemigrations --check
 ```
 
 ### Type Hints (Optional but Recommended)
@@ -568,16 +568,16 @@ def get_optional_account(account_id: int) -> Optional[Account]:
 
 ```bash
 cd app/backend
-python manage.py runserver
+uv run python manage.py runserver
 
 # Custom port
-python manage.py runserver 0.0.0.0:8001
+uv run python manage.py runserver 0.0.0.0:8001
 ```
 
 ### Interactive Shell
 
 ```bash
-python manage.py shell
+uv run python manage.py shell
 
 >>> from api.models import *
 >>> institutions = Institution.objects.all()
@@ -590,16 +590,16 @@ python manage.py shell
 
 ```bash
 # Create new migration
-python manage.py makemigrations
+uv run python manage.py makemigrations
 
 # Apply migrations
-python manage.py migrate
+uv run python manage.py migrate
 
 # Show migration status
-python manage.py showmigrations
+uv run python manage.py showmigrations
 
 # Rollback migration
-python manage.py migrate api 0001
+uv run python manage.py migrate api 0001
 ```
 
 ### Django Management Commands - Environment Setup
@@ -611,9 +611,7 @@ All Django management commands (`manage.py`) must be executed from the correct d
 # Always run from the backend directory
 cd app/backend
 
-# Then execute any management command
-python manage.py <command>
-# Or with uv:
+# Execute management commands with uv
 uv run python manage.py <command>
 ```
 
@@ -621,16 +619,17 @@ uv run python manage.py <command>
 - The `manage.py` script automatically adds the workspace root to `sys.path` to make the `app` package importable
 - This is required for Django to resolve the settings module path: `financial_analysis.settings`
 - Running from a different directory may cause `ModuleNotFoundError`
+- Using `uv run` ensures the correct virtual environment and dependencies are used without manual activation
 
 **Common Management Commands:**
 ```bash
-python manage.py runserver          # Start dev server
-python manage.py makemigrations     # Create migrations
-python manage.py migrate            # Apply migrations
-python manage.py test api           # Run tests
-python manage.py shell              # Interactive shell
-python manage.py createsuperuser    # Create admin user
-python manage.py import_transactions # Import CSV transactions
+uv run python manage.py runserver          # Start dev server
+uv run python manage.py makemigrations     # Create migrations
+uv run python manage.py migrate            # Apply migrations
+uv run python manage.py test api           # Run tests
+uv run python manage.py shell              # Interactive shell
+uv run python manage.py createsuperuser    # Create admin user
+uv run python manage.py import_transactions # Import CSV transactions
 ```
 
 For details on troubleshooting Django command issues, see [TROUBLESHOOTING.md](../guides/TROUBLESHOOTING.md#django-management-commands).
@@ -638,7 +637,7 @@ For details on troubleshooting Django command issues, see [TROUBLESHOOTING.md](.
 ### Create Django Admin User
 
 ```bash
-python manage.py createsuperuser
+uv run python manage.py createsuperuser
 # Then visit http://localhost:8000/admin/
 ```
 
@@ -646,24 +645,21 @@ python manage.py createsuperuser
 
 ```bash
 # Load all fixtures (order matters for foreign key dependencies)
-python manage.py loaddata institutions accounts categories transactions import_logs
+uv run python manage.py loaddata institutions accounts categories transactions import_logs
 
 # Load individual fixtures
-python manage.py loaddata api/fixtures/categories.json
+uv run python manage.py loaddata api/fixtures/categories.json
 
 # Create custom fixture
-python manage.py dumpdata api.Category > my_categories.json
-python manage.py loaddata my_categories.json
+uv run python manage.py dumpdata api.Category > my_categories.json
+uv run python manage.py loaddata my_categories.json
 ```
 
 ### Generate Fake Data
 
-```bash
-from factory_boy import Factory
-from api.models import Institution
-
-# Create using factories
-from api.factories import InstitutionFactory
+```python
+# In uv run python manage.py shell:
+from tests.fixtures.factory import InstitutionFactory
 
 institutions = [InstitutionFactory() for _ in range(10)]
 ```
@@ -674,13 +670,13 @@ institutions = [InstitutionFactory() for _ in range(10)]
 
 1. **Test locally:**
    ```bash
-   python manage.py test api.tests
-   pytest --cov=api api/tests.py
+   uv run python manage.py test api.tests
+   uv run pytest --cov=api api/tests.py
    ```
 
 2. **Format code:**
    ```bash
-   black api/ && isort api/ && flake8 api/
+   uv run black api/ ; uv run isort api/ ; uv run flake8 api/
    ```
 
 3. **Commit changes:**
