@@ -26,6 +26,19 @@ The database contains 5 main tables representing financial data entities:
 | `api_transaction` | Individual transactions | ~10K-100K | Grocery stores, restaurant, ATM |
 | `api_importlog` | Import job history | ~100-1000 | CSV import logs, status |
 
+### Supported Database Backends
+
+The application supports multiple relational databases, configured via the `DATABASE_ENGINE` environment variable:
+
+| Engine | Value | Driver Required |
+|--------|-------|-----------------|
+| SQLite | `sqlite` | Built-in |
+| PostgreSQL | `postgresql` | `psycopg2-binary` |
+| MySQL | `mysql` | `mysqlclient` |
+| MariaDB | `mariadb` | `mysqlclient` |
+
+See the [Installation Guide](../guides/INSTALLATION.md) for environment variable configuration.
+
 ---
 
 ## Institutions Table

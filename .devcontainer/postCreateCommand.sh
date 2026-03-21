@@ -34,7 +34,7 @@ else
     python manage.py migrate --noinput 2>/dev/null || echo "ℹ️  Note: Migrations skipped or not yet available"
     
     echo "📊 Loading initial data..."
-    python manage.py loaddata categories 2>/dev/null || echo "ℹ️  Note: Category fixtures not available"
+    python manage.py loaddata institutions accounts categories transactions import_logs 2>/dev/null || echo "ℹ️  Note: Some fixtures not available"
     
     echo "🔍 Running Django checks..."
     python manage.py check || echo "⚠️  Some checks did not pass"

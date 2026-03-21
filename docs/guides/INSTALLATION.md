@@ -162,7 +162,15 @@ DEBUG=True
 ALLOWED_HOSTS=localhost,127.0.0.1
 
 # Database
-DATABASE_PATH=./db.sqlite3
+# ENGINE options: sqlite, postgresql, mysql, mariadb
+DATABASE_ENGINE=sqlite
+DATABASE_NAME=db.sqlite3
+
+# Required for postgresql, mysql, mariadb (ignored for sqlite)
+# DATABASE_USER=your_db_user
+# DATABASE_PASSWORD=your_db_password
+# DATABASE_HOST=localhost
+# DATABASE_PORT=5432
 
 # CORS Settings
 CORS_ALLOW_ALL_ORIGINS=True
@@ -183,7 +191,10 @@ python manage.py createsuperuser
 ### Load Sample Data (Optional)
 
 ```bash
-# Load category fixtures
+# Load all fixtures (order matters for foreign key dependencies)
+python manage.py loaddata institutions accounts categories transactions import_logs
+
+# Or load individually
 python manage.py loaddata api/fixtures/categories.json
 
 # Run setup script

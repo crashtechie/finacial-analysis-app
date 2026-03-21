@@ -56,7 +56,11 @@ app/backend/
 │   │       └── import_transactions.py  # Import CLI command
 │   │
 │   ├── fixtures/                 # Initial data
-│   │   └── categories.json       # Default categories
+│   │   ├── categories.json      # Default categories
+│   │   ├── institutions.json    # Sample institutions
+│   │   ├── accounts.json        # Sample accounts
+│   │   ├── transactions.json    # Sample transactions
+│   │   └── import_logs.json     # Sample import logs
 │   │
 │   └── migrations/               # Database migrations
 │       └── 0001_initial.py
@@ -641,7 +645,10 @@ python manage.py createsuperuser
 ### Load Fixtures
 
 ```bash
-# Load categories
+# Load all fixtures (order matters for foreign key dependencies)
+python manage.py loaddata institutions accounts categories transactions import_logs
+
+# Load individual fixtures
 python manage.py loaddata api/fixtures/categories.json
 
 # Create custom fixture

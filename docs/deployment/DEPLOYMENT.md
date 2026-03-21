@@ -170,6 +170,33 @@ sudo certbot renew --dry-run
 
 ## Database Configuration
 
+### Configurable Database Backend
+
+The application supports multiple database backends via environment variables. Set these in your `.env` file (or production environment):
+
+```env
+# ENGINE options: sqlite, postgresql, mysql, mariadb
+DATABASE_ENGINE=postgresql
+DATABASE_NAME=financial_analysis
+DATABASE_USER=your_db_user
+DATABASE_PASSWORD=your_db_password
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+```
+
+For SQLite (development default), only `DATABASE_ENGINE` and `DATABASE_NAME` are needed:
+
+```env
+DATABASE_ENGINE=sqlite
+DATABASE_NAME=db.sqlite3
+```
+
+All database variables are required (no fallback defaults). Missing variables will cause Django to fail at startup with a `KeyError`.
+
+You will also need the appropriate Python database driver installed:
+- PostgreSQL: `psycopg2-binary`
+- MySQL/MariaDB: `mysqlclient`
+
 ### Switch from SQLite to PostgreSQL
 
 Update `settings.py`:

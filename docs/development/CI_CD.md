@@ -31,7 +31,7 @@ The CI pipeline runs automatically on:
 2. Install `uv` package manager
 3. Install Python dependencies from [app/backend/pyproject.toml](../../app/backend/pyproject.toml)
 4. Run database migrations
-5. Load fixture data (categories)
+5. Load fixture data (institutions, accounts, categories, transactions, import logs)
 6. Execute pytest with coverage analysis
 7. Upload coverage report as artifact
 8. **Enforcement:** Pipeline fails if coverage < 80%
@@ -300,7 +300,7 @@ cd app/frontend && npm run lint && npm run type-check && cd ../..
 **Possible Causes:**
 
 1. **Missing migrations:** Run `python manage.py makemigrations --check` locally
-2. **Missing fixtures:** Ensure [app/backend/api/fixtures/categories.json](../../app/backend/api/fixtures/categories.json) exists
+2. **Missing fixtures:** Ensure fixture files exist in [app/backend/api/fixtures/](../../app/backend/api/fixtures/) (institutions.json, accounts.json, categories.json, transactions.json, import_logs.json)
 3. **Environment differences:** Check Python version (requires 3.14+)
 4. **Database state:** CI uses fresh SQLite DB, ensure tests don't depend on existing data
 
@@ -310,7 +310,7 @@ cd app/frontend && npm run lint && npm run type-check && cd ../..
 cd app/backend
 rm -f db.sqlite3  # Start fresh
 uv run python manage.py migrate
-uv run python manage.py loaddata api/fixtures/categories.json
+uv run python manage.py loaddata institutions accounts categories transactions import_logs
 uv run pytest
 ```
 

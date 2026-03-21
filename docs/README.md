@@ -29,7 +29,7 @@ A full-stack application for analyzing financial data from CSV files, featuring 
 - **Python 3.12+**
 - **Django 5.x** - Web framework
 - **Django REST Framework** - API framework
-- **SQLite** - Database
+- **SQLite** - Database (default; PostgreSQL, MySQL, MariaDB also supported)
 - **uv** - Fast Python package manager
 - **Pandas** - Data processing
 - **VS Code Dev Containers** - Consistent development environment
@@ -71,10 +71,10 @@ A full-stack application for analyzing financial data from CSV files, featuring 
    uv run python manage.py migrate
    ```
 
-4. **Load initial categories**:
+4. **Load initial data**:
 
    ```bash
-   uv run python manage.py loaddata categories
+   uv run python manage.py loaddata institutions accounts categories transactions import_logs
    ```
 
 5. **Import sample data** (optional):

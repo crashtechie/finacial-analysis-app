@@ -495,6 +495,26 @@ REST_FRAMEWORK = {
 
 ## Testing Problems
 
+### Pytest Fails with KeyError for Database Environment Variables
+
+**Error:**
+```
+KeyError: 'DATABASE_ENGINE'
+```
+
+**Cause:** `tests/conftest.py` is not loading the `.env` file before Django settings are imported. The database settings use `os.environ[]` (strict, no defaults), so missing variables cause a `KeyError`.
+
+**Solution:** Ensure `conftest.py` includes `load_dotenv()`:
+```python
+from dotenv import load_dotenv
+backend_dir = Path(__file__).parent.parent
+load_dotenv(backend_dir / '.env')
+```
+
+**Related Issue:** [bug2026036](../issues/bug2026036-pytest-keyerror-missing-env-vars.md)
+
+---
+
 ### Tests Not Discovering
 
 **Error:**

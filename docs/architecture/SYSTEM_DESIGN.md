@@ -454,7 +454,11 @@ app/backend/
 │   │       └── import_transactions.py  # Import command
 │   │
 │   ├── fixtures/                 # Initial data
-│   │   └── categories.json       # Default transaction categories
+│   │   ├── categories.json      # Default transaction categories
+│   │   ├── institutions.json    # Sample institutions
+│   │   ├── accounts.json        # Sample accounts
+│   │   ├── transactions.json    # Sample transactions
+│   │   └── import_logs.json     # Sample import logs
 │   │
 │   └── migrations/               # Database migrations
 │       └── 0001_initial.py       # Initial schema
@@ -478,7 +482,7 @@ app/backend/
 | **Language** | Python | 3.14.3 | Core runtime |
 | **Web Framework** | Django | 5.2+ | Web server and ORM |
 | **API Framework** | Django REST Framework | 3.14+ | REST API implementation |
-| **Database** | SQLite | 3.x | Data persistence (dev/test) |
+| **Database** | SQLite | 3.x | Data persistence (default; PostgreSQL, MySQL, MariaDB also supported) |
 | **Package Manager** | uv | Latest | Fast dependency management |
 | **Testing** | pytest, Django TestCase | Latest | Test execution and validation |
 | **Code Quality** | black, flake8, isort | Latest | Code formatting and linting |

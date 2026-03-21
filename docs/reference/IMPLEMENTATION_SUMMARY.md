@@ -14,7 +14,7 @@ A complete Django REST API application for analyzing financial data from CSV fil
 ### 1. ✅ Development Environment
 - **Dev Container Configuration** - Python 3.12, uv package manager, auto-setup
 - **Dependencies Installed** - Django 5.2, DRF, pandas, CORS headers, filters
-- **Environment Configuration** - `.env` file support, modular settings
+- **Environment Configuration** - `.env` file support, configurable database backend (SQLite, PostgreSQL, MySQL, MariaDB)
 
 ### 2. ✅ Data Models
 - **Institution** - Financial institutions (banks, credit cards)
@@ -76,7 +76,7 @@ A complete Django REST API application for analyzing financial data from CSV fil
 ### 6. ✅ Utilities & Configuration
 - **Date Helpers** - Period calculations, date parsing, formatting
 - **Formatters** - Currency, percentages, number abbreviation
-- **Fixtures** - 20 pre-loaded categories from sample data
+- **Fixtures** - Pre-loaded categories, institutions, accounts, transactions, and import logs
 - **Admin Interface** - Full Django admin with color coding and statistics
 
 ### 7. ✅ Documentation
@@ -147,7 +147,11 @@ financial-analysis-app/
 │   ├── migrations/
 │   │   └── 0001_initial.py
 │   ├── fixtures/
-│   │   └── categories.json
+│   │   ├── categories.json      # Default categories
+│   │   ├── institutions.json    # Sample institutions
+│   │   ├── accounts.json        # Sample accounts
+│   │   ├── transactions.json    # Sample transactions
+│   │   └── import_logs.json     # Sample import logs
 │   ├── importers/
 │   │   ├── __init__.py
 │   │   ├── base.py

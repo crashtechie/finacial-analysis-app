@@ -34,6 +34,10 @@ The project uses **two testing frameworks**:
 
 ## Running Tests
 
+### Prerequisites
+
+Tests require the `.env` file to be present in `app/backend/` with all required database variables. The `tests/conftest.py` file loads `.env` automatically before Django settings are imported. If you see `KeyError: 'DATABASE_ENGINE'`, ensure your `.env` file exists and contains the database configuration.
+
 ### Quick Start
 
 ```bash

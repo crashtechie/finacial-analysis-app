@@ -1,0 +1,46 @@
+[
+  {
+    "model": "api.account",
+    "pk": 1,
+    "fields": {
+      "institution": 1,
+      "name": "Primary Checking",
+      "account_number": "4521",
+      "account_type": "checking",
+      "created_at": "2026-03-01T22:45:00.000Z"
+    }
+  },
+  {
+    "model": "api.account",
+    "pk": 2,
+    "fields": {
+      "institution": 1,
+      "name": "Savings",
+      "account_number": "4522",
+      "account_type": "savings",
+      "created_at": "2026-03-01T22:45:00.100Z"
+    }
+  },
+  {
+    "model": "api.account",
+    "pk": 3,
+    "fields": {
+      "institution": 2,
+      "name": "Joint Checking",
+      "account_number": "7890",
+      "account_type": "checking",
+      "created_at": "2026-03-01T22:45:00.200Z"
+    }
+  },
+  {
+    "model": "api.account",
+    "pk": 4,
+    "fields": {
+      "institution": 3,
+      "name": "Rewards Card",
+      "account_number": "3344",
+      "account_type": "credit",
+      "created_at": "2026-03-01T22:45:00.300Z"
+    }
+  }
+]

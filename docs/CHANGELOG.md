@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Configurable Database Backend**: Database engine is now configurable via environment variables, supporting SQLite, PostgreSQL, MySQL, and MariaDB.
+  - New env vars: `DATABASE_ENGINE`, `DATABASE_NAME`, `DATABASE_USER`, `DATABASE_PASSWORD`, `DATABASE_HOST`, `DATABASE_PORT`
+  - Strict configuration with no fallback defaults — missing variables raise `KeyError` at startup
+  - Replaces the previous `DATABASE_PATH` variable (SQLite-only)
+- **Django Fixtures for All Models**: Added fixture files for institutions, accounts, transactions, and import logs.
+  - `api/fixtures/institutions.json` — 3 institutions
+  - `api/fixtures/accounts.json` — 4 accounts across institutions
+  - `api/fixtures/transactions.json` — 12 transactions with category references
+  - `api/fixtures/import_logs.json` — 4 import logs (success, partial, failed states)
+
+### Fixed
+
+- **Pytest Environment Loading**: Fixed `KeyError` during test collection by adding `load_dotenv()` to `tests/conftest.py` so `.env` variables are available before Django settings are imported.
+  - Related issue: [bug2026036](issues/bug2026036-pytest-keyerror-missing-env-vars.md)
+
+### Changed
+
+- **`.env.example` Updated**: Replaced `DATABASE_PATH` with the new database configuration variables (`DATABASE_ENGINE`, `DATABASE_NAME`, etc.)
+
 ### Planned
 
 - PDF statement parsing support (Bank-2, Bank-4 formats)

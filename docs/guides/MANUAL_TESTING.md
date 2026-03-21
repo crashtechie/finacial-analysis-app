@@ -36,8 +36,8 @@ uv sync
 # Run migrations
 uv run python manage.py migrate
 
-# Load sample categories
-uv run python manage.py loaddata api/fixtures/categories.json
+# Load sample data (all fixtures)
+uv run python manage.py loaddata institutions accounts categories transactions import_logs
 
 # Create superuser (for admin testing)
 uv run python manage.py createsuperuser
