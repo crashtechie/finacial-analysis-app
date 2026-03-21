@@ -42,13 +42,17 @@ jobs:
         working-directory: app/backend
         run: uv sync --extra dev
 
+      - name: Set up environment
+        working-directory: app/backend
+        run: cp .env.example .env
+
       - name: Run database migrations
         working-directory: app/backend
         run: uv run python manage.py migrate
 
       - name: Load fixture data
         working-directory: app/backend
-        run: uv run python manage.py loaddata api/fixtures/categories.json
+        run: uv run python manage.py loaddata institutions accounts categories transactions import_logs
 
       - name: Run tests with coverage
         working-directory: app/backend
